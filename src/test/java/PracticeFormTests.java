@@ -3,8 +3,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -24,7 +22,7 @@ public class PracticeFormTests {
         $("#firstName").setValue("Alex");
         $("#lastName").setValue("Cooller");
         $("#userEmail").setValue("alex@cooller.com");
-        $(".custom-control-label").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("9991112233");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(4);
@@ -34,7 +32,7 @@ public class PracticeFormTests {
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#hobbiesWrapper").$(byText("Music")).click();
-        $("#uploadPicture").uploadFile(new File("src/test/java/image/image_1.jpg"));
+        $("#uploadPicture").uploadFromClasspath("image_1.jpg");
         $("#currentAddress").setValue("Moscow");
         $("#state").click();
         $(byText("NCR")).click();
@@ -46,6 +44,7 @@ public class PracticeFormTests {
         $(".modal-body").shouldHave(text("Alex"));
         $(".modal-body").shouldHave(text("Cooller"));
         $(".modal-body").shouldHave(text("alex@cooller.com"));
+        $(".modal-body").shouldHave(text("Male"));
         $(".modal-body").shouldHave(text("9991112233"));
         $(".modal-body").shouldHave(text("29 April,1999"));
         $(".modal-body").shouldHave(text("Maths"));
